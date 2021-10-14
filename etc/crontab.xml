@@ -33,5 +33,8 @@
         <job name="adyen_payment_cancel_expired_orders" instance="AdyenCancelOrders" method="execute">
             <schedule>0 0 * * *</schedule>
         </job>
+        <job name="adyen_clear_state_data" instance="Adyen\Payment\Cron\ClearAdyenStateData" method="execute">
+            <schedule>*/10 * * * *</schedule>
+        </job>
     </group>
 </config>
