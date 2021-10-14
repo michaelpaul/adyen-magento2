@@ -66,7 +66,7 @@ class ClearAdyenStateData
         $timeStart->modify(self::TIME_RANGE);
         $orders = $this->orderResourceModel->getCompletedOrdersUpdatedSince($timeStart);
         foreach ($orders as $order) {
-            $this->stateDataHelper->CleanQuoteStateData($order['quoteId'], $order['adyen_resulturl_event_code']);
+            $this->stateDataHelper->cleanQuoteStateData($order['quoteId'], $order['adyen_resulturl_event_code']);
         }
     }
 }
