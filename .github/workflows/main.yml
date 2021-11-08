@@ -27,10 +27,10 @@ jobs:
         MAGENTO_PASSWORD: ${{ secrets.MAGENTO_PASSWORD }}
     - name: Run PHPUnit
       run: vendor/bin/phpunit Test/
-    - name: Set up MySQL
+    - name: MFTF Tests
       run: |
-        sudo /etc/init.d/mysql start
-        mysql -e 'CREATE DATABASE ${{ env.DB_DATABASE }};' -u${{ env.DB_USER }} -p${{ env.DB_PASSWORD }}
+        apt-get update && apt-get install -y libxslt1-dev libxml2-dev libicu-dev libpng-dev unzip openssh-client libfreetype6-dev libjpeg-dev default-mysql-client chromium chromium-driver
+        mkdir -p /usr/share/man/man1 && apt-get install -y default-jre
       env:
         DB_DATABASE: test_db
         DB_USER: ${{ secrets.DB_USER }}
