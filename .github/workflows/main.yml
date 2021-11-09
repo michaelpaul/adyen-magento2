@@ -32,8 +32,8 @@ jobs:
         sudo apt-get update && sudo apt-get install -y libxslt1-dev libxml2-dev libicu-dev libpng-dev unzip openssh-client libfreetype6-dev libjpeg-dev default-mysql-client chromium-bsu chromium-driver
         sudo mkdir -p /usr/share/man/man1 && sudo apt-get install -y default-jre
         curl -sSL -o selenium-server-standalone.jar https://bit.ly/2TlkRyu
-        find var generated pub/static pub/media app/etc -type d -exec chmod g+s {} +
-        chown -R :www-data .
+        curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
+        composer install
       env:
         DB_DATABASE: test_db
         DB_USER: ${{ secrets.DB_USER }}
