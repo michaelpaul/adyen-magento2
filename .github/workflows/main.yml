@@ -32,7 +32,8 @@ jobs:
         sudo apt-get update && sudo apt-get install -y libxslt1-dev libxml2-dev libicu-dev libpng-dev unzip openssh-client libfreetype6-dev libjpeg-dev default-mysql-client chromium-bsu chromium-driver
         sudo mkdir -p /usr/share/man/man1 && sudo apt-get install -y default-jre
         curl -sSL -o selenium-server-standalone.jar https://bit.ly/2TlkRyu
-        sudo apt-get install php${{ matrix.php-version }}-gd php${{ matrix.php-version }}-bcmath php${{ matrix.php-version }}-intl php${{ matrix.php-version }}-mysql php${{ matrix.php-version }}-soap php${{ matrix.php-version }}-common php${{ matrix.php-version }}-xml php${{ matrix.php-version }}-zip
+        find var generated pub/static pub/media app/etc -type d -exec chmod g+s {} +
+        chown -R :www-data .
       env:
         DB_DATABASE: test_db
         DB_USER: ${{ secrets.DB_USER }}
