@@ -34,6 +34,13 @@ jobs:
         curl -sSL -o selenium-server-standalone.jar https://bit.ly/2TlkRyu
         curl -sS https://getcomposer.org/installer | php -- --install-dir=/usr/local/bin --filename=composer
         composer install
+        bin/magento setup:install --base-url=http://127.0.0.1/ --backend-frontname=backendname --db-host=127.0.0.1 --db-name=mftf-tests-db --db-user=root --db-password=password --admin-email=a@b.com --admin-user=admin --admin-password=password123! --admin-firstname=Firstname --admin-lastname=Lastname
+        bin/magento config:set web/unsecure/base_url 'http://127.0.0.1/'
+        bin/magento config:set web/secure/base_url 'http://127.0.0.1/'
+        bin/magento config:set cms/wysiwyg/enabled disabled
+        bin/magento config:set admin/security/admin_account_sharing 1
+        bin/magento config:set admin/security/use_form_key 0
+        bin/magento config:set catalog/search/engine mysql
       env:
         DB_DATABASE: test_db
         DB_USER: ${{ secrets.DB_USER }}
