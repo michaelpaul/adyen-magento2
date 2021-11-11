@@ -11,7 +11,6 @@ jobs:
         php-version: [7.2, 7.3, 7.4]
     
     steps:
-    - uses: actions/checkout@v2
     - name: Use PHP ${{ matrix.php-version }}
       uses: shivammathur/setup-php@v2
       with:
@@ -20,10 +19,11 @@ jobs:
     - name: Test plugin installation
       run: |
         echo "{\"http-basic\":{\"repo.magento.com\":{\"username\":\"${MAGENTO_USERNAME}\",\"password\":\"${MAGENTO_PASSWORD}\"}}}" > auth.json
-        composer install --prefer-dist
+        composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition
+        composer require adyen/adyen-magento2:dev-${GITHUB_REF##*/}
       env:
         CI: true
         MAGENTO_USERNAME: ${{ secrets.MAGENTO_USERNAME }}
         MAGENTO_PASSWORD: ${{ secrets.MAGENTO_PASSWORD }}
     - name: Run PHPUnit
-      run: vendor/bin/phpunit Test/
+      run: vendor/bin/phpunit vendor/adyen/module-payment/Test/
