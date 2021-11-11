@@ -20,7 +20,7 @@ jobs:
       run: |
         composer config -a -g http-basic.repo.magento.com ${MAGENTO_USERNAME} ${MAGENTO_PASSWORD}
         composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition
-        composer require adyen/adyen-magento2:dev-${GITHUB_REF##*/}
+        composer require adyen/module-payment:dev-${GITHUB_REF##*/}
       env:
         CI: true
         MAGENTO_USERNAME: ${{ secrets.MAGENTO_USERNAME }}
