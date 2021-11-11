@@ -19,7 +19,8 @@ jobs:
     - name: Test plugin installation
       run: |
         composer config -a -g http-basic.repo.magento.com ${MAGENTO_USERNAME} ${MAGENTO_PASSWORD}
-        composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition
+        composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento
+        cd magento
         composer require adyen/module-payment:dev-${GITHUB_REF##*/}
       env:
         CI: true
