@@ -21,6 +21,7 @@ jobs:
         composer config -a -g http-basic.repo.magento.com ${MAGENTO_USERNAME} ${MAGENTO_PASSWORD}
         composer create-project --repository-url=https://repo.magento.com/ magento/project-community-edition magento
         cd magento
+        composer config -g repo.packagist composer https://packagist.org
         composer require adyen/module-payment:dev-${GITHUB_REF##*/}
       env:
         CI: true
