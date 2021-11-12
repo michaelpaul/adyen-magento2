@@ -28,4 +28,6 @@ jobs:
         MAGENTO_USERNAME: ${{ secrets.MAGENTO_USERNAME }}
         MAGENTO_PASSWORD: ${{ secrets.MAGENTO_PASSWORD }}
     - name: Run PHPUnit
-      run: vendor/bin/phpunit vendor/adyen/module-payment/Test/
+      run: |
+        cd magento
+        vendor/bin/phpunit vendor/adyen/module-payment/Test/
