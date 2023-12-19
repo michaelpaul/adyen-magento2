@@ -27,9 +27,9 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Preparing the next release
-        uses: michaelpaul/adyen-release-automation-action@v1.2.1
+        uses: Adyen/adyen-release-automation-action@v1.2.0
         with:
-          token: ${{ secrets.GITHUB_TOKEN }}
+          token: ${{ secrets.ADYEN_AUTOMATION_BOT_ACCESS_TOKEN }}
           develop-branch: develop
           version-files: composer.json etc/module.xml
           pre-release: ${{ inputs.pre-release || false }}
